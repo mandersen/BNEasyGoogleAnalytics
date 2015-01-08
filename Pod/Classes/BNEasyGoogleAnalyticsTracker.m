@@ -51,6 +51,7 @@ NSString *const kLikeSocialAction = @"Like";
 
 - (void)trackEventWithCategory:(NSString *)category andAction:(NSString *)action andLabel:(NSString *)label andValue:(NSNumber *)value
 {
+    [self setAnyDynamicValuesFromDelegate];
     [self.tracker send:[[GAIDictionaryBuilder createEventWithCategory:category
                                                                action:action
                                                                 label:label
@@ -61,7 +62,7 @@ NSString *const kLikeSocialAction = @"Like";
 {
     [self.tracker set:kGAIScreenName
                 value:screenName];
-    
+    [self setAnyDynamicValuesFromDelegate];
     [self.tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
@@ -151,5 +152,17 @@ NSString *const kLikeSocialAction = @"Like";
     [[GAI sharedInstance] dispatch];
 }
 
+#pragma mark - BNEasyGoogleAnalyticsDelegate
+
+- (void)setAnyDynamicValuesFromDelegate {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(dynamicValuesForGoogleAnalyticsTracker)]) {
+        NSDictionary *delegateValues = [self.delegate dynamicValuesForGoogleAnalyticsTracker];
+        if (delegateValues && delegateValues.count > 0) {
+            [delegateValues enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+                [self.tracker set:key value:obj];
+            }];
+        }
+    }
+}
 
 @end

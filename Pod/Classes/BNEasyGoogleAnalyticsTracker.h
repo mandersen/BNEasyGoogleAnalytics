@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol BNEasyGoogleAnalyticsDelegate <NSObject>
+- (NSDictionary *)dynamicValuesForGoogleAnalyticsTracker;
+@end
+
 /**
  *  This is the standard string to describe Twitter as the network when tracking social activity
  */
@@ -29,6 +33,8 @@ extern NSString *const kLikeSocialAction;
  *  BNEasyGoogleAnalyticsTracker is a basic tracker allowing a more fluent iOS-style interface to Google Analytics tracking
  */
 @interface BNEasyGoogleAnalyticsTracker : NSObject
+
+@property (nonatomic, weak) id <BNEasyGoogleAnalyticsDelegate> delegate;
 
 /**
  *  A property determining whether uncaught exceptions should be automatically reported to Google Analytics.
