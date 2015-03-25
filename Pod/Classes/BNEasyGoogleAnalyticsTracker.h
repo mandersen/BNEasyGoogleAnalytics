@@ -172,4 +172,6 @@ extern NSString *const kLikeSocialAction;
  */
 - (void)sync;
 
+- (void)setCustomDimension:(NSUInteger)index value:(NSString *)value;
+
 @end

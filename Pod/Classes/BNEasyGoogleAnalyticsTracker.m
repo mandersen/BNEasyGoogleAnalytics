@@ -112,6 +112,11 @@ NSString *const kLikeSocialAction = @"Like";
     });
 }
 
+- (void)setCustomDimension:(NSUInteger)index value:(NSString *)value {
+    [self.tracker set:[GAIFields customDimensionForIndex:index]
+                value:value];
+}
+
 #pragma mark - Social sharing
 
 - (void)trackTweetToTarget:(NSString *)target
