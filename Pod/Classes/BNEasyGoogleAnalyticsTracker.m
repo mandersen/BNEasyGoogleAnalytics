@@ -117,6 +117,11 @@ NSString *const kLikeSocialAction = @"Like";
                 value:value];
 }
 
+- (void)setUserId:(NSString *)userId {
+    [self.tracker set:@"&uid"
+                value:userId];
+}
+
 #pragma mark - Social sharing
 
 - (void)trackTweetToTarget:(NSString *)target
