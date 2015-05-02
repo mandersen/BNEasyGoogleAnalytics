@@ -174,6 +174,8 @@ extern NSString *const kLikeSocialAction;
 
 - (void)setCustomDimension:(NSUInteger)index value:(NSString *)value;
 
-- (void)setUserId:(NSString *)userId;
+- (void)setUserIdentifier:(NSString *)userIdentifier;
+
+- (void)setAllowIDFACollection:(BOOL)allowIDFACollection;
 
 @end

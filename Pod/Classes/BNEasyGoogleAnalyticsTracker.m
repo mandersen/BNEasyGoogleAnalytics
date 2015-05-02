@@ -117,9 +117,13 @@ NSString *const kLikeSocialAction = @"Like";
                 value:value];
 }
 
-- (void)setUserId:(NSString *)userId {
+- (void)setUserIdentifier:(NSString *)userIdentifier {
     [self.tracker set:@"&uid"
-                value:userId];
+                value:userIdentifier];
+}
+
+- (void)setAllowIDFACollection:(BOOL)allowIDFACollection {
+    self.tracker.allowIDFACollection = allowIDFACollection;
 }
 
 #pragma mark - Social sharing
